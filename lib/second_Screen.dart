@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,6 +12,50 @@ class Second_Screen extends StatelessWidget {
     "images/b3.png",
     "images/b4.png",
     "images/b5.png"
+  ];
+
+  List<List<Color>> colors = [
+    [
+      Colors.pink.withOpacity(0.2),
+      Colors.white.withOpacity(1),
+      Colors.purple.withOpacity(0.2),
+      Colors.white.withOpacity(1),
+      Colors.pink.withOpacity(0.2),
+      Colors.white.withOpacity(1),
+      // Colors.red.withOpacity(0.3),
+      // Colors.white.withOpacity(1),
+      // Colors.orange.withOpacity(0.3),
+      // Colors.white.withOpacity(1),
+      // Colors.red.withOpacity(0.2),
+      // Colors.white.withOpacity(1),
+    ],
+  ];
+  List guitar = [
+    'images/g1.png',
+    'images/g2.png',
+    'images/g3.png',
+    'images/g4.png',
+    'images/g5.png',
+  ];
+  List topic = [
+    'images/b1.png',
+    'images/b2.png',
+    'images/b3.png',
+    'images/b4.png',
+    'images/b5.png',
+  ];
+
+  List rating = ['4.8', '4.2', '4.5', '4.9', '4.3'];
+
+  List brands = ['Ibanez', 'Gibson', 'Fender', 'PSR', 'R&L', 'Ibanez'];
+
+  List name = [
+    'Acoustic Guitar',
+    'Ultimate Soprano',
+    'Spruce Rosewood',
+    'Natural Acoustic',
+    'Juarez Acoustic',
+    'Ultimate Soprano'
   ];
 
   @override
@@ -80,7 +126,8 @@ class Second_Screen extends StatelessWidget {
             style:
                 TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 25),
           ),
-          GridView.builder(shrinkWrap: true,
+          GridView.builder(
+            shrinkWrap: true,
             itemCount: 6,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, childAspectRatio: 1 / 2),
@@ -99,12 +146,80 @@ class Second_Screen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12)),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.pink
-                              // gradient: LinearGradient(colors: Colors.   fromRGBO(59, 8, 5, 1),begin: Alignment.center)
-                              ),
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.pink.withOpacity(0.4),
+                            // gradient: LinearGradient(
+                            //     colors: colors[index],
+                            //     begin: Alignment.bottomRight,
+                            //     end: Alignment.centerLeft)
+                          ),
                         ),
                       ),
+                    ),
+                    Hero(
+                        tag: guitar[index],
+                        child: Container(
+                          margin: EdgeInsets.only(bottom: 80, top: 10),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage((guitar[index])))),
+                        )),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(15),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Icon(
+                              Icons.local_fire_department,
+                              color: Colors.pink.withOpacity(0.8),
+                              size: 50,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 80,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            Text(
+                              rating[index] + "   ",
+                              style: TextStyle(
+                                  color: Colors.black.withOpacity(0.6),
+                                  fontSize: 19),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 135,
+                        ),
+                        Center(
+                          child: Text(
+                            name[index],
+                            style: TextStyle(
+                                color: Colors.black.withOpacity(0.8),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 18, top: 3),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              brands[index],
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                          ),
+                        )
+                      ],
                     )
                   ],
                 ),
@@ -122,8 +237,8 @@ class Clip1 extends CustomClipper<Path> {
   Path getClip(Size size) {
     Path path = Path();
     path.moveTo(0, size.height * (0.7));
-    path.moveTo(0, size.height);
-    path.lineTo(size.height, size.width);
+    path.lineTo(0, size.height);
+    path.lineTo(size.width, size.height);
     path.lineTo(size.width, size.height * (0.34));
     path.quadraticBezierTo(size.width, size.height * (0.3), size.width * (0.92),
         size.height * (0.31));
